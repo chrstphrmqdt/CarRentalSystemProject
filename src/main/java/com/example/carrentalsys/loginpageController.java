@@ -84,74 +84,101 @@ public class loginpageController implements Initializable {
 
 
     public void loginCustomer() {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String userType = getUserType();
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND user_type = ?";
         conn = database.connectdb();
 
         try {
             prepare = conn.prepareStatement(sql);
             prepare.setString(1, usernameField.getText());
             prepare.setString(2, passwordField.getText());
+            prepare.setString(3, userType);
             result = prepare.executeQuery();
             Alert alert;
 
-            if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
+            if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || userType == null) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Login Failed");
                 alert.setHeaderText(null);
-                alert.setContentText("Please enter your username and password");
+                alert.setContentText("Please enter your username, password, and select user type");
                 alert.showAndWait();
             } else {
                 if (result.next()) {
-                    // if admin user was logged in successfully
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Admin Login Successful");
+                    alert.setTitle("Login Successful");
                     alert.setHeaderText(null);
                     alert.setContentText("Welcome " + usernameField.getText());
                     alert.showAndWait();
 
                     loginButton.getScene().getWindow().hide();
 
-                    // link to the dashboard
-                    Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-                    // if admin user was logged in successfully then it will open the dashboard for admin
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.initStyle(StageStyle.UNDECORATED);
+                    // link to the appropriate dashboard based on user type
+                    if (userType.equals("admin")) {
+                        Parent root = FXMLLoader.load(getClass().getResource("adminDashboard.fxml"));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.initStyle(StageStyle.UNDECORATED);
 
+                        root.setOnMousePressed(MouseEvent -> {
+                            x = MouseEvent.getSceneX();
+                            y = MouseEvent.getSceneY();
+                        });
+                        root.setOnMouseDragged(MouseEvent -> {
+                            stage.setX(MouseEvent.getScreenX() - x);
+                            stage.setY(MouseEvent.getScreenY() - y);
+                            stage.setOpacity(0.7);
+                        });
+                        root.setOnMouseReleased(MouseEvent -> {
+                            stage.setOpacity(1.0);
+                        });
 
-                    root.setOnMousePressed(MouseEvent -> {
-                        x = MouseEvent.getSceneX();
-                        y = MouseEvent.getSceneY();
-                    });
-                    root.setOnMouseDragged(MouseEvent -> {
-                        stage.setX(MouseEvent.getScreenX() - x);
-                        stage.setY(MouseEvent.getScreenY() - y);
-                        stage.setOpacity(0.7);
-                    });
-                    root.setOnMouseReleased(MouseEvent -> {
-                        stage.setOpacity(1.0);
-                    });
+                        stage.initStyle(StageStyle.TRANSPARENT);
 
-                    stage.initStyle(StageStyle.TRANSPARENT);
-
-                    stage.setScene(scene);
-                    stage.show();
-
+                        stage.setScene(scene);
+                        stage.show();
                     } else {
-                        alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Login Failed");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Invalid username or password");
-                        alert.showAndWait();
+                        Parent root = FXMLLoader.load(getClass().getResource("customerDashboard.fxml"));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.initStyle(StageStyle.UNDECORATED);
 
+                        root.setOnMousePressed(MouseEvent -> {
+                            x = MouseEvent.getSceneX();
+                            y = MouseEvent.getSceneY();
+                        });
+                        root.setOnMouseDragged(MouseEvent -> {
+                            stage.setX(MouseEvent.getScreenX() - x);
+                            stage.setY(MouseEvent.getScreenY() - y);
+                            stage.setOpacity(0.7);
+                        });
+                        root.setOnMouseReleased(MouseEvent -> {
+                            stage.setOpacity(1.0);
+                        });
+
+                        stage.initStyle(StageStyle.TRANSPARENT);
+
+                        stage.setScene(scene);
+                        stage.show();
                     }
 
+                } else {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Login Failed");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Invalid username, password, or user type");
+                    alert.showAndWait();
+
                 }
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
+
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
         }
+
     }
+
 
     @FXML
     void handleCancelButtonAction(ActionEvent event) {

@@ -23,7 +23,7 @@
             </Label>
             <TextField fx:id="usernameField" layoutX="88.0" layoutY="204.0" prefHeight="35.0" prefWidth="224.0" promptText="Username" styleClass="animated-textfield" stylesheets="@loginDesign.css" />
             <PasswordField fx:id="passwordField" layoutX="88.0" layoutY="264.0" prefHeight="35.0" prefWidth="224.0" promptText="Password" styleClass="myPasswordField" stylesheets="@loginDesign.css" />
-            <Button fx:id="loginButton" layoutX="141.0" layoutY="332.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="44.0" prefWidth="117.0" stylesheets="@loginDesign.css" text="LOGIN" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="141.0" layoutY="332.0" mnemonicParsing="false" onAction="#loginCustomer" prefHeight="44.0" prefWidth="117.0" stylesheets="@loginDesign.css" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
