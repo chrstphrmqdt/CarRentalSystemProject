@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrentalsys.dashboardController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="210.0" layoutY="37.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="40.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="26.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="myImageView">
+                                 <image>
+                                    <Image url="@car.png" />
+                                 </image>
+                                 <effect>
+                                    <ColorAdjust brightness="1.0" hue="-0.07" saturation="0.04" />
+                                 </effect>
+                              </ImageView>
+                              <Label layoutX="49.0" layoutY="10.0" text="Autoventure Rental Service" textFill="WHITE">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <ToolBar layoutX="1010.4" layoutY="1.4" prefHeight="41.0" prefWidth="90.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1010.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                 <items>
+                                    <Button fx:id="btnMinimize" mnemonicParsing="false" onAction="#setBtnMinimize" styleClass="minimize-button" stylesheets="@dashboardDesign.css" text="🗕" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnClose" mnemonicParsing="false" onAction="#setBtnClose" styleClass="close-button" stylesheets="@dashboardDesign.css" text="✕" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@dashboardDesign.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="61.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@user.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="1.0" />
+                           </effect>
+                        </ImageView>
+                        <Label layoutX="65.0" layoutY="132.0" text="Welcome" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="77.0" layoutY="154.0" text="User" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" layoutX="84.0" layoutY="209.0" startX="-66.90000915527344" startY="-1.52587890625E-5" stroke="WHITE" />
+                        <Button fx:id="nav_btnHome" layoutX="15.0" layoutY="241.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="Home" />
+                        <Button fx:id="nav_btnSignout" layoutX="63.0" layoutY="518.0" mnemonicParsing="false" onAction="#logout" styleClass="signout-button" stylesheets="@dashboardDesign.css" text="Sign Out" />
+                        <Button fx:id="btnCars" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="Cars" />
+                        <Button fx:id="btnReservations" layoutX="14.0" layoutY="318.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="Reservations" />
+                        <Button fx:id="btnAccount" layoutX="15.0" layoutY="356.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" stylesheets="@dashboardDesign.css" text="My Account">
+                           <styleClass>
+                              <String fx:value="nav-button" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <styleClass>
+                        <String fx:value="navigation-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="customer_Home" prefHeight="560.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="2.0" prefHeight="560.0" prefWidth="900.0" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="black-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <ImageView fx:id="home_carLogo" fitHeight="252.0" fitWidth="417.0" layoutX="237.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true" styleClass="HomeImageView">
+                                       <image>
+                                          <Image url="@Black%20and%20Red%20Modern%20Automotive%20Car%20Logo.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="home_carsImage" fitHeight="386.0" fitWidth="658.0" layoutX="156.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@CARS.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="92.0" layoutY="400.0" prefHeight="54.0" prefWidth="706.0" styleClass="HomeLabel" stylesheets="@dashboardDesign.css" text="About Us" />
+                                    <Label alignment="CENTER" layoutX="92.0" layoutY="437.0" prefHeight="54.0" prefWidth="706.0" styleClass="HomeText" stylesheets="@dashboardDesign.css" text="To provide exceptional car rental services with convenience, affordability, and customer satisfaction." />
+                                    <Label alignment="CENTER" layoutX="92.0" layoutY="462.0" prefHeight="54.0" prefWidth="706.0" styleClass="HomeText" stylesheets="@dashboardDesign.css" text="We are committed to honesty, integrity, and quality in all aspects of our business." />
+                                    <Label alignment="CENTER" layoutX="92.0" layoutY="489.0" prefHeight="54.0" prefWidth="706.0" styleClass="HomeText" stylesheets="@dashboardDesign.css" text="Established in 2023, we've grown to become a leading car rental company with loyal customers." />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="admin_Dashboard" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="4.0" prefHeight="560.0" prefWidth="900.0" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="112.0" prefWidth="188.0" stylesheets="@loginDesign.css">
+                                       <children>
+                                          <ImageView fitHeight="102.0" fitWidth="102.0" layoutX="14.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@sedan.png" />
+                                             </image>
+                                             <effect>
+                                                <ColorAdjust brightness="1.0" />
+                                             </effect>
+                                          </ImageView>
+                                          <Label layoutX="135.0" layoutY="96.0" prefHeight="26.0" prefWidth="95.0" text="Total Cars" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="home_lbTotalCars" layoutX="222.0" layoutY="14.0" prefHeight="34.0" prefWidth="17.0" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="tile" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="305.0" layoutY="15.0" prefHeight="133.0" prefWidth="242.0" stylesheets="@dashboardDesign.css">
+                                       <children>
+                                          <ImageView fitHeight="75.0" fitWidth="71.0" layoutX="27.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@business-and-finance.png" />
+                                             </image>
+                                             <effect>
+                                                <ColorAdjust brightness="1.0" />
+                                             </effect>
+                                          </ImageView>
+                                          <Label layoutX="121.0" layoutY="96.0" prefHeight="27.0" prefWidth="109.0" text="Total Income" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="home_lbTotalIncome" layoutX="186.0" layoutY="14.0" prefHeight="34.0" prefWidth="54.0" text="₱ 0.0" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="tile" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="600.0" layoutY="16.0" prefHeight="132.0" prefWidth="256.0">
+                                       <children>
+                                          <ImageView fitHeight="68.0" fitWidth="67.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@people.png" />
+                                             </image>
+                                             <effect>
+                                                <ColorAdjust brightness="1.0" />
+                                             </effect>
+                                          </ImageView>
+                                          <Label layoutX="109.0" layoutY="96.0" prefHeight="27.0" prefWidth="133.0" text="Total Customers" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="home_lbTotalCus" layoutX="222.0" layoutY="14.0" prefHeight="34.0" prefWidth="17.0" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="tile" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="black-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <AnchorPane layoutX="14.0" layoutY="212.0" prefHeight="339.0" prefWidth="871.0" stylesheets="@dashboardDesign.css">
+                                 <styleClass>
+                                    <String fx:value="black-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="311.0" prefWidth="475.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <LineChart fx:id="home_lcIncome" layoutX="-89.0" layoutY="-112.0" prefHeight="311.2" prefWidth="475.2" title="Income Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </LineChart>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="510.0" layoutY="14.0" prefHeight="311.0" prefWidth="341.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <LineChart fx:id="home_lcCustomer" layoutX="-36.0" layoutY="-64.0" prefHeight="336.0" prefWidth="464.0" title="Customer Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </LineChart>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="admin_availableCars" layoutX="215.0" layoutY="219.0" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="560.0" prefWidth="900.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="4.0" layoutY="2.0" prefHeight="198.0" prefWidth="890.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="black-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="31.0" layoutY="21.0" text="Car ID:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="availableCars_tfCarID" layoutX="79.0" layoutY="17.0" prefHeight="27.0" prefWidth="138.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
+                                          <TextField fx:id="availableCars_tfBrand" layoutX="79.0" layoutY="60.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-fielddesign" />
+                                          <TextField fx:id="availableCars_tfModel" layoutX="79.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
+                                          <ComboBox fx:id="availableCars_cbStatus" layoutX="79.0" layoutY="144.0" prefHeight="26.0" prefWidth="206.0" promptText="Choose" styleClass="combo-box" stylesheets="@dashboardDesign.css" />
+                                          <AnchorPane layoutX="429.0" layoutY="9.0" prefHeight="180.0" prefWidth="139.0" stylesheets="@dashboardDesign.css">
+                                             <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <children>
+                                                <ImageView fitHeight="127.0" fitWidth="156.0" layoutX="10.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                                                <Button fx:id="availableCars_btnImport" layoutX="33.0" layoutY="132.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="179.0" styleClass="editbuttons" stylesheets="@dashboardDesign.css" text="Import" />
+                                             </children>
+                                          </AnchorPane>
+                                          <Button fx:id="availableCars_btnDelete" layoutX="748.0" layoutY="145.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Delete" />
+                                          <Button fx:id="availableCars_btnClear" layoutX="628.0" layoutY="145.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Clear" />
+                                          <Button fx:id="availableCars_btnInsert" layoutX="748.0" layoutY="84.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Insert" />
+                                          <Button fx:id="availableCars_btnUpdate" layoutX="628.0" layoutY="84.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" stylesheets="@dashboardDesign.css" text="Update" />
+                                          <Label layoutX="31.0" layoutY="64.0" text="Brand:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="31.0" layoutY="104.0" text="Model:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="31.0" layoutY="146.0" text="Status:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="241.0" layoutY="21.0" text="Price:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="availableCars_tfPrice" layoutX="289.0" layoutY="17.0" prefHeight="27.0" prefWidth="116.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="4.0" layoutY="213.0" prefHeight="343.0" prefWidth="891.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="black-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="availableCars_tb" layoutX="14.0" layoutY="52.0" prefHeight="241.0" prefWidth="842.0" stylesheets="@dashboardDesign.css">
+                                            <columns>
+                                              <TableColumn fx:id="availableCars_tbCarID" prefWidth="147.1999969482422" text="Car ID" />
+                                              <TableColumn fx:id="availableCars_tbBrand" prefWidth="165.5999755859375" text="Brand" />
+                                                <TableColumn fx:id="availableCars_tbModel" prefWidth="177.60003662109375" text="Model" />
+                                                <TableColumn fx:id="availableCars_tbPrice" prefWidth="182.40008544921875" text="Price (₱)" />
+                                                <TableColumn fx:id="availableCars_tbStatus" prefWidth="164.0001220703125" text="Status" />
+                                            </columns>
+                                          </TableView>
+                                          <TextField fx:id="availableCars_tfSearch" layoutX="14.0" layoutY="8.0" prefHeight="27.0" prefWidth="206.0" promptText="Search" styleClass="input" stylesheets="@dashboardDesign.css" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="customer_Rentacar" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="560.0" prefWidth="900.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="223.0" prefWidth="871.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="black-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="434.0" layoutY="28.0" text="Date Rented:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="rent_dpDateRented" layoutX="536.0" layoutY="14.0" prefHeight="44.0" prefWidth="182.0" styleClass="date-picker" stylesheets="@dashboardDesign.css" />
+                                          <Label layoutX="420.0" layoutY="102.0" text="Date Returned:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="rent_dpDateReturned" layoutX="536.0" layoutY="90.0" prefHeight="44.0" prefWidth="182.0" styleClass="date-picker" stylesheets="@dashboardDesign.css" />
+                                          <Label layoutX="483.0" layoutY="169.0" text="Total:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="rent_lbTotal" layoutX="536.0" layoutY="167.0" text="₱ 0.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="rent_btnRent" layoutX="718.0" layoutY="168.0" mnemonicParsing="false" styleClass="rent-button" stylesheets="@dashboardDesign.css" text="Rent!" />
+                                          <ImageView fx:id="rent_carImage" fitHeight="193.0" fitWidth="383.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="15.0" layoutY="251.0" prefHeight="294.0" prefWidth="870.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="black-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="rent_tableview" layoutX="14.0" layoutY="53.0" prefHeight="233.0" prefWidth="842.0" stylesheets="@dashboardDesign.css">
+                                            <columns>
+                                              <TableColumn fx:id="rent_tbCarID" prefWidth="128.00001525878906" text="Car ID" />
+                                              <TableColumn fx:id="rent_tbBrand" prefWidth="159.99996948242188" text="Brand" />
+                                                <TableColumn fx:id="rent_tbModel" prefWidth="169.5999755859375" text="Model" />
+                                                <TableColumn fx:id="rent_tbPrice" prefWidth="170.4000244140625" text="Price (₱)" />
+                                                <TableColumn fx:id="rent_tbStatus" prefWidth="208.8001708984375" text="Status" />
+                                            </columns>
+                                          </TableView>
+                                          <Label layoutX="24.0" layoutY="14.0" text="Available Cars" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="customer_reservations" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="560.0" prefWidth="900.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="67.0" prefWidth="870.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="black-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <Button fx:id="reservations_btnNewRes" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="new-reservation-button" stylesheets="@dashboardDesign.css" text="New Reservation" />
+                                          <Button fx:id="reservations_btnModify" layoutX="184.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="new-reservation-button" stylesheets="@dashboardDesign.css" text="Modify" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="15.0" layoutY="230.0" prefHeight="315.0" prefWidth="870.0" stylesheets="@dashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="black-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TabPane fx:id="reservations_tbp" layoutY="-137.0" prefHeight="452.0" prefWidth="870.0" stylesheets="@dashboardDesign.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-137.0">
+                                            <tabs>
+                                              <Tab fx:id="reservations_tbCurrent" text="Current Reservations">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TableView fx:id="reservations_tbCurrent_tv" layoutX="42.0" layoutY="43.0" prefHeight="424.0" prefWidth="870.4" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                              <columns>
+                                                                <TableColumn fx:id="reservations_tvCur_CarID" prefWidth="116.80000305175781" text="Car ID" />
+                                                                <TableColumn fx:id="reservations_tvCur_Brand" prefWidth="146.39999389648438" text="Brand" />
+                                                                  <TableColumn fx:id="reservations_tvCur_Model" prefWidth="136.79998779296875" text="Model" />
+                                                                  <TableColumn fx:id="reservations_tvCur_CarRented" prefWidth="147.99993896484375" text="Car Rented Date" />
+                                                                  <TableColumn fx:id="reservations_tvCur_CarReturned" prefWidth="171.199951171875" text="Car Returned Date" />
+                                                                  <TableColumn fx:id="reservations_tvCur_Price" prefWidth="153.599853515625" text="Rental Price" />
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                              <Tab fx:id="reservations_tbPast" text="Past Reservations">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TableView fx:id="reservations_tbPast_tv" prefHeight="424.0" prefWidth="870.4" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="reservations_tvPast_CarID" prefWidth="116.80000305175781" text="Car ID" />
+                                                                  <TableColumn fx:id="reservations_tvPast_Brand" prefWidth="146.39999389648438" text="Brand" />
+                                                                  <TableColumn fx:id="reservations_tvPast_Model" prefWidth="136.79998779296875" text="Model" />
+                                                                  <TableColumn fx:id="reservations_tvPast_CarRented" prefWidth="147.99993896484375" text="Car Rented Date" />
+                                                                  <TableColumn fx:id="reservations_tvPast_CarReturn" prefWidth="171.199951171875" text="Car Returned Date" />
+                                                                  <TableColumn fx:id="reservations_tvPast_Price" prefWidth="153.599853515625" text="Rental Price" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                            </tabs>
+                                          </TabPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="customer_myAccount" layoutX="5.0" prefHeight="560.0" prefWidth="900.0" stylesheets="@dashboardDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="557.0" prefWidth="891.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label layoutX="29.0" layoutY="14.0" text="Account Settings" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="29.0" layoutY="57.0" text="Personal Information" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="29.0" layoutY="84.0" text="Here you can edit information about yourself." textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="29.0" layoutY="138.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Email" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="account_tfEmail" layoutX="29.0" layoutY="162.0" maxWidth="358.0" prefHeight="31.0" prefWidth="358.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <Label layoutX="29.0" layoutY="204.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Full Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="account_tfFirstn" layoutX="29.0" layoutY="238.0" maxWidth="274.0" prefHeight="31.0" prefWidth="172.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <TextField fx:id="account_tfLastN" layoutX="213.0" layoutY="238.0" maxWidth="274.0" prefHeight="31.0" prefWidth="173.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <Label layoutX="29.0" layoutY="288.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Address" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="account_tfAddress" layoutX="29.0" layoutY="312.0" maxWidth="358.0" prefHeight="31.0" prefWidth="358.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <Label layoutX="29.0" layoutY="224.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="First Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI" size="11.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="213.0" layoutY="224.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Last Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI" size="11.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="450.0" layoutY="59.0" text="Payment Details" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="450.0" layoutY="211.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Card number" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="account_tfCardNum" layoutX="450.0" layoutY="235.0" maxWidth="358.0" prefHeight="31.0" prefWidth="358.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <TextField fx:id="account_tfExp" layoutX="450.0" layoutY="313.0" maxWidth="274.0" prefHeight="31.0" prefWidth="168.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <Label layoutX="450.0" layoutY="290.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Expiration date" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="account_tfCvc" layoutX="629.0" layoutY="312.0" maxWidth="274.0" prefHeight="31.0" prefWidth="179.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <Label layoutX="629.0" layoutY="291.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="CVC" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="450.0" layoutY="136.0" styleClass="myaccountlabel" stylesheets="@dashboardDesign.css" text="Card holder" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="account_tfCardH" layoutX="450.0" layoutY="160.0" maxWidth="358.0" prefHeight="31.0" prefWidth="358.0" styleClass="Myaccount-text-field" stylesheets="@dashboardDesign.css" />
+                                    <Button fx:id="account_btnUpdate" layoutX="792.0" layoutY="498.0" mnemonicParsing="false" styleClass="button-update" stylesheets="@dashboardDesign.css" text="Update" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

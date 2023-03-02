@@ -1,0 +1,90 @@
+.animated-textfield {
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: #8d8d8d;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-border-color: transparent transparent #8d8d8d transparent;
+    -fx-border-width: 2px;
+    -fx-background-insets: 0 0 2px 0;
+}
+
+.animated-textfield:focused {
+    -fx-border-color: #8d8d8d;
+    -fx-background-insets: -1px 0 3px 0;
+}
+
+.animated-textfield:focused .prompt-text {
+    -fx-translate-y: -20px;
+    -fx-opacity: 1;
+    -fx-transition: all 0.3s;
+}
+/* Custom style class for the password field */
+.myPasswordField {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0.4em 0.4em 0.4em 1.4em;
+    -fx-font-size: 1.1em;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #bbb;
+    -fx-prompt-text-fill: #999;
+}
+
+/* Pseudo-class for when the password field is focused */
+.myPasswordField:focused {
+    -fx-border-color: #00bfff;
+}
+
+/* Pseudo-class for when the password field is not empty */
+.myPasswordField:non-empty {
+    -fx-border-color: #00bfff;
+}
+
+/* Pseudo-element for the eye icon */
+.myPasswordField .eye {
+    -fx-cursor: hand;
+    -fx-fill: #bbb;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
+    -fx-padding: 0.2em;
+}
+
+/* Pseudo-class for when the eye icon is hovered */
+.myPasswordField .eye:hover {
+    -fx-fill: #00bfff;
+}
+
+/* Pseudo-class for when the eye icon is pressed */
+.myPasswordField .eye:pressed {
+    -fx-fill: #666;
+}
+
+/* Animation for the eye icon */
+.myPasswordField .eye {
+    -fx-translate-x: 0;
+    -fx-transition: -fx-translate-x 0.3s ease;
+}
+
+.myPasswordField .eye:hover {
+    -fx-translate-x: -10px;
+}
+
+.myPasswordField .eye:pressed {
+    -fx-translate-x: -20px;
+}
+#loginButton {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-background-radius: 30px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 30px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0.0, 0, 1);
+}
+
+#loginButton:hover {
+    -fx-background-color: #3e8e41; /* Darker Green */
+}
+
+#loginButton:pressed {
+    -fx-background-color: #2e673a; /* Even Darker Green */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 2);
+}
