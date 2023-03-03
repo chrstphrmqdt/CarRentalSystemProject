@@ -104,6 +104,9 @@ public class loginpageController implements Initializable {
                 alert.showAndWait();
             } else {
                 if (result.next()) {
+
+                    getData.username = usernameField.getText();
+
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Login Successful");
                     alert.setHeaderText(null);

@@ -78,7 +78,7 @@
                               <Font name="Segoe UI" size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="77.0" layoutY="154.0" text="User" textFill="WHITE">
+                        <Label fx:id="usernameDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="162.0" prefHeight="28.0" prefWidth="195.0" text="User" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="22.0" />
                            </font>

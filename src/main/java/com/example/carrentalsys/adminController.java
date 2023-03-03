@@ -7,7 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class adminController {
 
@@ -105,24 +107,28 @@ public class adminController {
     private Button nav_btnSignout;
 
     @FXML
+    private Label usernameDisplay;
+
+    public void displayUsername() {
+        String user = getData.username;
+        usernameDisplay.setText(user.substring(0, 1).toUpperCase() + user.substring(1).toLowerCase());
+    }
+
+    @FXML
     void adminDashboard(ActionEvent event) throws Exception {
         if (event.getSource() == btnAdminDashboard) {
             admin_Dashboard.setVisible(true);
             admin_availableCars.setVisible(false);
-        }
-        else if (event.getSource() == btnAdminCars) {
+        } else if (event.getSource() == btnAdminCars) {
             admin_Dashboard.setVisible(false);
             admin_availableCars.setVisible(true);
-        }
-        else if (event.getSource() == admin_UserManag) {
+        } else if (event.getSource() == admin_UserManag) {
             admin_Dashboard.setVisible(false);
             admin_availableCars.setVisible(false);
 
 
         }
     }
-
-
 
     @FXML
     void logout(ActionEvent event) throws Exception {
@@ -151,5 +157,8 @@ public class adminController {
         Stage stage = (Stage) btnMinimize.getScene().getWindow();
         stage.setIconified(true);
     }
-
+    @FXML
+    public void initialize(URL url, ResourceBundle rb) {
+        displayUsername();
+    }
 }

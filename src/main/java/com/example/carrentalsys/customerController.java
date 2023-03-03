@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 public class customerController implements Initializable {
 
     @FXML
+    private Label usernameDisplay;
+    @FXML
     private Button account_btnUpdate;
     @FXML
     private Button btnAccount;
@@ -244,10 +246,10 @@ public class customerController implements Initializable {
     @FXML
     private TableColumn<?, ?> reservations_tvPast_Price;
 
-    private double x = 0;
-    private double y = 0;
-
-
+    public void displayUsername() {
+        String user = getData.username;
+        usernameDisplay.setText(user.substring(0, 1).toUpperCase() + user.substring(1).toLowerCase());
+    }
 // navigation buttons functions
 
     public void customerDashboard(ActionEvent event) throws IOException {
@@ -279,7 +281,7 @@ public class customerController implements Initializable {
     }
 
     public void logout(ActionEvent event) throws Exception {
-        // this will  go back to the login page and call the start method from the Main.java
+        // this will go back to the login page and call the start method from the Main.java
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("Are you sure you want to logout?");
@@ -308,5 +310,6 @@ public class customerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        displayUsername();
     }
 }
