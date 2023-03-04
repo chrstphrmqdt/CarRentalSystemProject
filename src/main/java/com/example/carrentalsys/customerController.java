@@ -1,16 +1,23 @@
 package com.example.carrentalsys;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -245,6 +252,15 @@ public class customerController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> reservations_tvPast_Price;
+
+    // DATABASE TOOLS
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+    private Statement statement;
+
+    private Image image;
+
 
     public void displayUsername() {
         String user = getData.username;
