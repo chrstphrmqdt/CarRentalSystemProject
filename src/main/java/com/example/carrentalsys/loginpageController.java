@@ -63,7 +63,6 @@ public class loginpageController implements Initializable {
     private RadioButton customerRadio;
 
 
-
     //database tools
     private Connection conn;
     private PreparedStatement prepare;
@@ -71,6 +70,54 @@ public class loginpageController implements Initializable {
 
     private double x = 0;
     private double y = 0;
+
+    // Getter and setter methods
+
+    public Connection getConn() {
+        return conn;
+    }
+
+    public void setConn(Connection conn) {
+        this.conn = conn;
+    }
+
+    // Getter and setter methods for prepare
+    public PreparedStatement getPrepare() {
+        return prepare;
+    }
+
+    public void setPrepare(PreparedStatement prepare) {
+        this.prepare = prepare;
+    }
+
+    // Getter and setter methods for result
+    public ResultSet getResult() {
+        return result;
+    }
+
+    public void setResult(ResultSet result) {
+        this.result = result;
+    }
+
+    // Getter and setter methods for x
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    // Getter and setter methods for y
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+//methods of the class
 
     public String getUserType() {
         if (adminRadio.isSelected()) {
@@ -82,20 +129,13 @@ public class loginpageController implements Initializable {
         }
     }
 
-
-    public void loginCustomer() {
+    public void loginCustomer() throws SQLException {
         String userType = getUserType();
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND user_type = ?";
-        conn = database.connectdb();
+        DatabaseHelper dbHelper = new DatabaseHelper();
+        ResultSet userInfo = dbHelper.getUserInfo(usernameField.getText(), passwordField.getText(), userType);
+        Alert alert;
 
         try {
-            prepare = conn.prepareStatement(sql);
-            prepare.setString(1, usernameField.getText());
-            prepare.setString(2, passwordField.getText());
-            prepare.setString(3, userType);
-            result = prepare.executeQuery();
-            Alert alert;
-
             if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || userType == null) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Login Failed");
@@ -103,7 +143,7 @@ public class loginpageController implements Initializable {
                 alert.setContentText("Please enter your username, password, and select user type");
                 alert.showAndWait();
             } else {
-                if (result.next()) {
+                if (userInfo.next()) {
 
                     getData.username = usernameField.getText();
 
@@ -165,21 +205,16 @@ public class loginpageController implements Initializable {
                         stage.setScene(scene);
                         stage.show();
                     }
-
                 } else {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Login Failed");
                     alert.setHeaderText(null);
-                    alert.setContentText("Invalid username, password, or user type");
+                    alert.setContentText("Invalid username or password");
                     alert.showAndWait();
-
                 }
-
             }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
         }
-
     }
 
 
@@ -188,6 +223,7 @@ public class loginpageController implements Initializable {
         System.exit(0);
 
     }
+
     public void initialize() {
         toggleButton.setOnAction(e -> {
             if (toggleButton.isSelected()) {

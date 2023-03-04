@@ -109,9 +109,12 @@ public class adminController {
     @FXML
     private Label usernameDisplay;
 
+    private String username;
+    public void displayUsername(String username) {
+        this.username = username;
+    }
     public void displayUsername() {
-        String user = getData.username;
-        usernameDisplay.setText(user.substring(0, 1).toUpperCase() + user.substring(1).toLowerCase());
+        usernameDisplay.setText(username.substring(0, 1).toUpperCase() + username.substring(1).toLowerCase());
     }
 
     @FXML
