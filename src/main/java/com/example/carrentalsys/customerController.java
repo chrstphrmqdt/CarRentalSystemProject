@@ -389,7 +389,6 @@ public class customerController implements Initializable {
                 } // NOW LETS PROCEED TO DASHBOARD FORM : )
             }
         }catch(Exception e){e.printStackTrace();}
-
     }
 
     public void rentClear(){

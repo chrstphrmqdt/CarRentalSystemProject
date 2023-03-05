@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -107,7 +108,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="admin_Dashboard" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="admin_Dashboard" prefHeight="560.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="5.0" layoutY="4.0" prefHeight="560.0" prefWidth="900.0" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -126,7 +127,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="home_lbTotalCars" layoutX="222.0" layoutY="14.0" prefHeight="34.0" prefWidth="17.0" text="0" textFill="WHITE">
+                                          <Label fx:id="home_availableCars" layoutX="189.0" layoutY="14.0" prefHeight="34.0" prefWidth="51.0" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -152,7 +153,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="home_lbTotalIncome" layoutX="186.0" layoutY="14.0" prefHeight="34.0" prefWidth="54.0" text="₱ 0.0" textFill="WHITE">
+                                          <Label fx:id="home_totalIncome" alignment="CENTER" layoutX="119.0" layoutY="14.0" prefHeight="34.0" prefWidth="122.0" text="₱ 0.0" textFill="WHITE">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -178,7 +179,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="home_lbTotalCus" layoutX="222.0" layoutY="14.0" prefHeight="34.0" prefWidth="17.0" text="0" textFill="WHITE">
+                                          <Label fx:id="home_totalCustomer" layoutX="202.0" layoutY="14.0" prefHeight="34.0" prefWidth="38.0" text="0" textFill="WHITE">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -207,14 +208,14 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <LineChart fx:id="home_lcIncome" layoutX="-89.0" layoutY="-112.0" prefHeight="311.2" prefWidth="475.2" title="Income Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <BarChart fx:id="home_lcIncome" layoutX="6.0" layoutY="6.0" prefHeight="298.0" prefWidth="462.0" title="Income Data Chart">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
                                               <NumberAxis side="LEFT" />
                                             </yAxis>
-                                          </LineChart>
+                                          </BarChart>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="510.0" layoutY="14.0" prefHeight="311.0" prefWidth="341.0" stylesheets="@dashboardDesign.css">
@@ -223,7 +224,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <LineChart fx:id="home_lcCustomer" layoutX="-36.0" layoutY="-64.0" prefHeight="336.0" prefWidth="464.0" title="Customer Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <LineChart fx:id="home_lcCustomer" layoutX="5.0" layoutY="5.0" prefHeight="299.0" prefWidth="330.0" title="Customer Data Chart" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
@@ -237,7 +238,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_availableCars" layoutX="215.0" layoutY="219.0" prefHeight="560.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="admin_availableCars" layoutX="215.0" layoutY="219.0" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="560.0" prefWidth="900.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>

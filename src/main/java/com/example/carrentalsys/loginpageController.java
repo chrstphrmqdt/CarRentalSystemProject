@@ -110,7 +110,9 @@ public class loginpageController implements Initializable {
                     alert.setContentText("Welcome " + usernameField.getText());
                     alert.showAndWait();
 
+
                     loginButton.getScene().getWindow().hide();
+
 
                     // link to the appropriate dashboard based on user type
                     if (userType.equals("admin")) {

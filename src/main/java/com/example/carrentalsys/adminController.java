@@ -6,7 +6,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -104,19 +106,19 @@ public class adminController {
     private Button btnMinimize;
 
     @FXML
-    private Label home_lbTotalCars;
+    private Label home_availableCars;
 
     @FXML
-    private Label home_lbTotalCus;
+    private Label home_totalCustomer;
 
     @FXML
-    private Label home_lbTotalIncome;
+    private Label home_totalIncome;
 
     @FXML
     private LineChart<?, ?> home_lcCustomer;
 
     @FXML
-    private LineChart<?, ?> home_lcIncome;
+    private BarChart<?, ?> home_lcIncome;
 
     @FXML
     private Button nav_btnHome;
@@ -136,6 +138,106 @@ public class adminController {
     private Statement statement;
 
     private Image image;
+
+    public void homeAvailableCars(){
+
+        String sql = "SELECT COUNT(id) FROM car WHERE status = 'Available'";
+
+        connect = database.connectdb();
+        int countAC = 0;
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                countAC = result.getInt("COUNT(id)");
+            }
+
+            home_availableCars.setText(String.valueOf(countAC));
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+    public void homeTotalIncome(){
+        String sql = "SELECT SUM(total) FROM customer";
+
+        double sumIncome = 0;
+
+        connect = database.connectdb();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                sumIncome = result.getDouble("SUM(total)");
+            }
+            home_totalIncome.setText("₱" + String.valueOf(sumIncome));
+        }catch(Exception e){e.printStackTrace();}
+    }
+    public void homeTotalCustomers(){
+
+        String sql = "SELECT COUNT(id) FROM customer";
+
+        int countTC = 0;
+
+        connect = database.connectdb();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                countTC = result.getInt("COUNT(id)");
+            }
+            home_totalCustomer.setText(String.valueOf(countTC));
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+    public void homeIncomeChart(){
+
+        home_lcIncome.getData().clear();
+
+        String sql = "SELECT date_rented, SUM(total) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
+
+        connect = database.connectdb();
+
+        try{
+            XYChart.Series chart = new XYChart.Series();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
+            }
+
+            home_lcIncome.getData().add(chart);
+
+        }catch(Exception e){e.printStackTrace();}
+    }
+    public void homeCustomerChart(){
+        home_lcCustomer.getData().clear();
+
+        String sql = "SELECT date_rented, COUNT(id) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
+
+        connect = database.connectdb();
+
+        try{
+            XYChart.Series chart = new XYChart.Series();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
+            }
+
+            home_lcCustomer.getData().add(chart);
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
 
     public void availableCarAdd() {
 
@@ -445,19 +547,19 @@ public class adminController {
 
     }
 
-
-    public void displayUsername() {
-        String user = getData.username;
-        usernameDisplay.setText(user.substring(0, 1).toUpperCase() + user.substring(1).toLowerCase());
-    }
-
-
-
     @FXML
     void adminDashboard(ActionEvent event) throws Exception {
         if (event.getSource() == btnAdminDashboard) {
             admin_Dashboard.setVisible(true);
             admin_availableCars.setVisible(false);
+
+            homeAvailableCars();
+            homeTotalCustomers();
+            homeTotalIncome();
+            homeCustomerChart();
+            homeIncomeChart();
+
+
         } else if (event.getSource() == btnAdminCars) {
             admin_Dashboard.setVisible(false);
             admin_availableCars.setVisible(true);
@@ -503,10 +605,17 @@ public class adminController {
     }
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        displayUsername();
+
 
         // Display the data onto the table view
         availableCarShowListData();
         availableCarStatusList();
+
+        //display the overview components
+        homeAvailableCars();
+        homeTotalIncome();
+        homeTotalCustomers();
+        homeIncomeChart();
+        homeCustomerChart();
     }
 }
