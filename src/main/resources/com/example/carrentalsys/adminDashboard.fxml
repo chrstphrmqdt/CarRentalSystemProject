@@ -84,7 +84,6 @@
                            </font>
                         </Label>
                         <Line endX="100.0" layoutX="84.0" layoutY="209.0" startX="-66.90000915527344" startY="-1.52587890625E-5" stroke="WHITE" />
-                        <Button fx:id="admin_UserManag" layoutX="14.0" layoutY="327.0" mnemonicParsing="false" onAction="#adminDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="User Management" />
                         <Button fx:id="nav_btnSignout" layoutX="63.0" layoutY="518.0" mnemonicParsing="false" onAction="#logout" styleClass="signout-button" stylesheets="@dashboardDesign.css" text="Sign Out" />
                         <Button fx:id="btnAdminCars" layoutX="15.0" layoutY="288.0" mnemonicParsing="false" onAction="#adminDashboard" prefHeight="38.0" prefWidth="170.0" stylesheets="@dashboardDesign.css" text="Available Cars">
                            <styleClass>
@@ -256,7 +255,7 @@
                                           <TextField fx:id="availableCars_tfCarID" layoutX="79.0" layoutY="17.0" prefHeight="27.0" prefWidth="138.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
                                           <TextField fx:id="availableCars_tfBrand" layoutX="79.0" layoutY="60.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-fielddesign" />
                                           <TextField fx:id="availableCars_tfModel" layoutX="79.0" layoutY="100.0" prefHeight="26.0" prefWidth="206.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
-                                          <ComboBox fx:id="availableCars_cbStatus" layoutX="79.0" layoutY="144.0" prefHeight="26.0" prefWidth="206.0" promptText="Choose" styleClass="combo-box" stylesheets="@dashboardDesign.css" />
+                                          <ComboBox fx:id="availableCars_cbStatus" layoutX="79.0" layoutY="144.0" onAction="#availableCarStatusList" prefHeight="26.0" prefWidth="206.0" promptText="Choose" styleClass="combo-box" stylesheets="@dashboardDesign.css" />
                                           <AnchorPane layoutX="429.0" layoutY="9.0" prefHeight="180.0" prefWidth="139.0" stylesheets="@dashboardDesign.css">
                                              <styleClass>
                                                 <String fx:value="white-bg" />
@@ -267,10 +266,10 @@
                                                 <Button fx:id="availableCars_btnImport" layoutX="42.0" layoutY="135.0" mnemonicParsing="false" onAction="#availableCarImportImage" prefHeight="26.0" prefWidth="179.0" styleClass="editbuttons" stylesheets="@dashboardDesign.css" text="Import" />
                                              </children>
                                           </AnchorPane>
-                                          <Button fx:id="availableCars_btnDelete" layoutX="748.0" layoutY="145.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Delete" />
+                                          <Button fx:id="availableCars_btnDelete" layoutX="748.0" layoutY="145.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Delete" />
                                           <Button fx:id="availableCars_btnClear" layoutX="628.0" layoutY="145.0" mnemonicParsing="false" onAction="#availableCarClear" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Clear" />
                                           <Button fx:id="availableCars_btnInsert" layoutX="748.0" layoutY="84.0" mnemonicParsing="false" onAction="#availableCarAdd" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" text="Insert" />
-                                          <Button fx:id="availableCars_btnUpdate" layoutX="628.0" layoutY="84.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" stylesheets="@dashboardDesign.css" text="Update" />
+                                          <Button fx:id="availableCars_btnUpdate" layoutX="628.0" layoutY="84.0" mnemonicParsing="false" onAction="#availableCarUpdate" prefHeight="28.0" prefWidth="109.0" styleClass="editbuttons" stylesheets="@dashboardDesign.css" text="Update" />
                                           <Label layoutX="31.0" layoutY="64.0" text="Brand:" textFill="WHITE">
                                              <font>
                                                 <Font name="Segoe UI" size="15.0" />
@@ -291,7 +290,7 @@
                                                 <Font name="Segoe UI" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="availableCars_tfPrice" layoutX="289.0" layoutY="17.0" prefHeight="27.0" prefWidth="116.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
+                                          <TextField fx:id="availableCars_tfPrice" layoutX="289.0" layoutY="17.0" prefHeight="27.0" prefWidth="116.0" promptText="₱ 0.0" styleClass="text-fielddesign" stylesheets="@dashboardDesign.css" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="4.0" layoutY="213.0" prefHeight="343.0" prefWidth="891.0" stylesheets="@dashboardDesign.css">
@@ -300,7 +299,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView fx:id="availableCars_tb" layoutX="14.0" layoutY="52.0" onMouseClicked="#availableCarSelect" prefHeight="241.0" prefWidth="842.0" stylesheets="@dashboardDesign.css">
+                                          <TableView fx:id="availableCars_tb" layoutX="14.0" layoutY="52.0" onMouseClicked="#availableCarSelect" prefHeight="241.0" prefWidth="842.0">
                                             <columns>
                                               <TableColumn fx:id="availableCars_tbCarID" prefWidth="147.1999969482422" text="Car ID" />
                                               <TableColumn fx:id="availableCars_tbBrand" prefWidth="165.5999755859375" text="Brand" />
@@ -309,7 +308,7 @@
                                                 <TableColumn fx:id="availableCars_tbStatus" prefWidth="164.0001220703125" text="Status" />
                                             </columns>
                                           </TableView>
-                                          <TextField fx:id="availableCars_tfSearch" layoutX="14.0" layoutY="8.0" prefHeight="27.0" prefWidth="206.0" promptText="Search" styleClass="input" stylesheets="@dashboardDesign.css" />
+                                          <TextField fx:id="availableCars_tfSearch" layoutX="14.0" layoutY="8.0" onAction="#availableCarSearch" prefHeight="27.0" prefWidth="206.0" promptText="Search" styleClass="searchBox" stylesheets="@dashboardDesign.css" />
                                        </children>
                                     </AnchorPane>
                                  </children>

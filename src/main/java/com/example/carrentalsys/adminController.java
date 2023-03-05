@@ -2,6 +2,8 @@ package com.example.carrentalsys;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -19,9 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class adminController {
 
@@ -192,6 +192,106 @@ public class adminController {
         }
 
     }
+    public void availableCarUpdate() {
+
+        String uri = getData.path;
+        uri = uri.replace("\\", "\\\\");
+
+        String sql = "UPDATE car SET brand = '" + availableCars_tfBrand.getText() + "', model = '"
+                + availableCars_tfModel.getText() + "', status ='"
+                + availableCars_cbStatus.getSelectionModel().getSelectedItem() + "', price = '"
+                + availableCars_tfPrice.getText() + "', image = '" + uri
+                + "' WHERE car_id = '" + availableCars_tfCarID.getText() + "'";
+
+        connect = database.connectdb();
+
+        try {
+            Alert alert;
+
+            if (availableCars_tfCarID.getText().isEmpty()
+                    || availableCars_tfBrand.getText().isEmpty()
+                    || availableCars_tfModel.getText().isEmpty()
+                    || availableCars_cbStatus.getSelectionModel().getSelectedItem() == null
+                    || availableCars_tfPrice.getText().isEmpty()
+                    || getData.path == null || getData.path == "") {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure you want to UPDATE Car ID: " + availableCars_tfCarID.getText() + "?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    statement = connect.createStatement();
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+
+                    availableCarShowListData();
+                    availableCarClear();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void availableCarDelete() {
+
+        String sql = "DELETE FROM car WHERE car_id = '" + availableCars_tfCarID.getText() + "'";
+
+        connect = database.connectdb();
+
+        try {
+            Alert alert;
+            if (availableCars_tfCarID.getText().isEmpty()
+                    || availableCars_tfBrand.getText().isEmpty()
+                    || availableCars_tfModel.getText().isEmpty()
+                    || availableCars_cbStatus.getSelectionModel().getSelectedItem() == null
+                    || availableCars_tfPrice.getText().isEmpty()
+                    || getData.path == null || getData.path == "") {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure you want to DELETE Car ID: " + availableCars_tfCarID.getText() + "?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    statement = connect.createStatement();
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Deleted!");
+                    alert.showAndWait();
+
+                    availableCarShowListData();
+                    availableCarClear();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void availableCarClear() {
         availableCars_tfCarID.setText("");
@@ -206,6 +306,19 @@ public class adminController {
 
     }
 
+    private String[] listStatus = {"Available", "Not Available"};
+
+    public void availableCarStatusList() {
+
+        List<String> listS = new ArrayList<>();
+
+        for (String data : listStatus) {
+            listS.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listS);
+        availableCars_cbStatus.setItems(listData);
+    }
     public void availableCarImportImage() {
 
         FileChooser open = new FileChooser();
@@ -270,6 +383,44 @@ public class adminController {
 
         availableCars_tb.setItems(availableCarList);
     }
+
+
+    public void availableCarSearch() {
+
+        FilteredList<carData> filter = new FilteredList<>(availableCarList, e -> true);
+
+        availableCars_tfSearch.textProperty().addListener((Observable, oldValue, newValue) -> {
+
+            filter.setPredicate(predicateCarData -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (predicateCarData.getCarId().toString().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getBrand().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getModel().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getPrice().toString().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getStatus().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<carData> sortList = new SortedList<>(filter);
+
+        sortList.comparatorProperty().bind(availableCars_tb.comparatorProperty());
+        availableCars_tb.setItems(sortList);
+
+    }
     public void availableCarSelect() {
         carData carD = availableCars_tb.getSelectionModel().getSelectedItem();
         int num = availableCars_tb.getSelectionModel().getSelectedIndex();
@@ -278,10 +429,10 @@ public class adminController {
             return;
         }
 
-        availableCars_tbCarID.setText(String.valueOf(carD.getCarId()));
-        availableCars_tbBrand.setText(carD.getBrand());
-        availableCars_tbModel.setText(carD.getModel());
-        availableCars_tbPrice.setText(String.valueOf(carD.getPrice()));
+        availableCars_tfCarID.setText(String.valueOf(carD.getCarId()));
+        availableCars_tfBrand.setText(carD.getBrand());
+        availableCars_tfModel.setText(carD.getModel());
+        availableCars_tfPrice.setText(String.valueOf(carD.getPrice()));
 
         getData.path = carD.getImage();
 
@@ -310,6 +461,11 @@ public class adminController {
         } else if (event.getSource() == btnAdminCars) {
             admin_Dashboard.setVisible(false);
             admin_availableCars.setVisible(true);
+
+            // To update the table view when clicked
+            availableCarShowListData();
+            availableCarStatusList();
+
         } else if (event.getSource() == admin_UserManag) {
             admin_Dashboard.setVisible(false);
             admin_availableCars.setVisible(false);
@@ -348,5 +504,9 @@ public class adminController {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         displayUsername();
+
+        // Display the data onto the table view
+        availableCarShowListData();
+        availableCarStatusList();
     }
 }

@@ -137,6 +137,7 @@ public class loginpageController implements Initializable {
 
                         stage.setScene(scene);
                         stage.show();
+
                     } else {
                         Parent root = FXMLLoader.load(getClass().getResource("customerDashboard.fxml"));
                         Stage stage = new Stage();

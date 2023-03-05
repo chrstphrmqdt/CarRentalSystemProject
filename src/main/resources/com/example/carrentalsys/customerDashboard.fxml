@@ -2,10 +2,9 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -77,7 +76,7 @@
                               <Font name="Segoe UI" size="17.0" />
                            </font>
                         </Label>
-                        <Label fx:id="usernameDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="160.0" prefHeight="28.0" prefWidth="196.0" text="USER" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="usernameDisplay" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="160.0" prefHeight="28.0" prefWidth="196.0" text="Customer" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="22.0" />
                            </font>
@@ -86,8 +85,7 @@
                         <Button fx:id="nav_btnHome" layoutX="15.0" layoutY="241.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="Home" />
                         <Button fx:id="nav_btnSignout" layoutX="63.0" layoutY="518.0" mnemonicParsing="false" onAction="#logout" styleClass="signout-button" stylesheets="@dashboardDesign.css" text="Sign Out" />
                         <Button fx:id="btnCars" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="Cars" />
-                        <Button fx:id="btnReservations" layoutX="14.0" layoutY="318.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" styleClass="nav-button" stylesheets="@dashboardDesign.css" text="Reservations" />
-                        <Button fx:id="btnAccount" layoutX="15.0" layoutY="356.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" stylesheets="@dashboardDesign.css" text="My Account">
+                        <Button fx:id="btnAccount" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" onAction="#customerDashboard" prefHeight="38.0" prefWidth="170.0" stylesheets="@dashboardDesign.css" text="My Account">
                            <styleClass>
                               <String fx:value="nav-button" />
                               <String fx:value="shadow" />
@@ -103,7 +101,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="customer_Home" prefHeight="560.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="customer_Home" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="5.0" layoutY="2.0" prefHeight="560.0" prefWidth="900.0" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <styleClass>
@@ -129,9 +127,9 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="customer_Rentacar" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="customer_Rentacar" prefHeight="560.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane prefHeight="560.0" prefWidth="900.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane prefHeight="556.0" prefWidth="935.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="223.0" prefWidth="871.0" stylesheets="@dashboardDesign.css">
                                        <styleClass>
@@ -139,30 +137,81 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <Label layoutX="434.0" layoutY="28.0" text="Date Rented:" textFill="WHITE">
+                                          <Label layoutX="243.0" layoutY="73.0" text="Last Name:" textFill="WHITE">
                                              <font>
                                                 <Font name="Segoe UI" size="15.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker fx:id="rent_dpDateRented" layoutX="536.0" layoutY="14.0" prefHeight="44.0" prefWidth="182.0" styleClass="date-picker" stylesheets="@dashboardDesign.css" />
-                                          <Label layoutX="420.0" layoutY="102.0" text="Date Returned:" textFill="WHITE">
+                                          <Label layoutX="26.0" layoutY="178.0" text="Date Rented:" textFill="WHITE">
                                              <font>
                                                 <Font name="Segoe UI" size="15.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker fx:id="rent_dpDateReturned" layoutX="536.0" layoutY="90.0" prefHeight="44.0" prefWidth="182.0" styleClass="date-picker" stylesheets="@dashboardDesign.css" />
-                                          <Label layoutX="483.0" layoutY="169.0" text="Total:" textFill="WHITE">
+                                          <DatePicker fx:id="rent_dpDateRented" layoutX="128.0" layoutY="174.0" prefHeight="26.0" prefWidth="123.0" styleClass="date-picker" />
+                                          <Label layoutX="299.0" layoutY="177.0" text="Date Returned:" textFill="WHITE">
                                              <font>
                                                 <Font name="Segoe UI" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="rent_lbTotal" layoutX="536.0" layoutY="167.0" text="₱ 0.0" textFill="WHITE">
+                                          <DatePicker fx:id="rent_dpDateReturned" layoutX="415.0" layoutY="174.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="123.0" styleClass="date-picker" stylesheets="@dashboardDesign.css" />
+                                          <Label layoutX="644.0" layoutY="34.0" text="Total:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="rent_lbTotal" layoutX="697.0" layoutY="32.0" text="₱ 0.0" textFill="WHITE">
                                              <font>
                                                 <Font name="Segoe UI" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Button fx:id="rent_btnRent" layoutX="718.0" layoutY="168.0" mnemonicParsing="false" styleClass="rent-button" stylesheets="@dashboardDesign.css" text="Rent!" />
-                                          <ImageView fx:id="rent_carImage" fitHeight="193.0" fitWidth="383.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Button fx:id="rent_btnRent" layoutX="737.0" layoutY="167.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="39.0" prefWidth="118.0" text="Rent!" />
+                                          <Label layoutX="26.0" layoutY="20.0" text="Car ID:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="27.0" layoutY="73.0" text="Brand:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="25.0" layoutY="123.0" text="Model:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="242.0" layoutY="20.0" text="First Name:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="265.0" layoutY="123.0" text="Gender:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="rent_CarID" layoutX="76.0" layoutY="18.0" onAction="#rentCarCarId" prefWidth="150.0" />
+                                          <ComboBox fx:id="rent_Brand" layoutX="76.0" layoutY="70.0" onAction="#rentCarBrand" prefWidth="150.0" />
+                                          <ComboBox fx:id="rent_Gender" layoutX="324.0" layoutY="120.0" onAction="#rentCarGender" prefWidth="150.0" />
+                                          <ComboBox fx:id="rent_Model" layoutX="76.0" layoutY="120.0" onAction="#rentCarModel" prefWidth="150.0" />
+                                          <TextField layoutX="325.0" layoutY="70.0" />
+                                          <TextField layoutX="326.0" layoutY="17.0" />
+                                          <Label layoutX="624.0" layoutY="71.0" text="Amount:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="625.0" layoutY="116.0" text="Balance:" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="rent_balance" layoutX="697.0" layoutY="111.0" text="₱ 0.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="rent_amount" layoutX="697.0" layoutY="70.0" onAction="#rentAmount" prefHeight="26.0" prefWidth="82.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="15.0" layoutY="251.0" prefHeight="294.0" prefWidth="870.0" stylesheets="@dashboardDesign.css">
@@ -185,72 +234,6 @@
                                                 <Font name="Segoe UI Bold" size="26.0" />
                                              </font>
                                           </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="customer_reservations" prefHeight="560.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <AnchorPane prefHeight="560.0" prefWidth="900.0" styleClass="black-bg" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="67.0" prefWidth="870.0" stylesheets="@dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="black-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
-                                       <children>
-                                          <Button fx:id="reservations_btnNewRes" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="new-reservation-button" stylesheets="@dashboardDesign.css" text="New Reservation" />
-                                          <Button fx:id="reservations_btnModify" layoutX="184.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="new-reservation-button" stylesheets="@dashboardDesign.css" text="Modify" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="15.0" layoutY="230.0" prefHeight="315.0" prefWidth="870.0" stylesheets="@dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="black-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
-                                       <children>
-                                          <TabPane fx:id="reservations_tbp" layoutY="-137.0" prefHeight="452.0" prefWidth="870.0" stylesheets="@dashboardDesign.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-137.0">
-                                            <tabs>
-                                              <Tab fx:id="reservations_tbCurrent" text="Current Reservations">
-                                                <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                         <children>
-                                                            <TableView fx:id="reservations_tbCurrent_tv" layoutX="42.0" layoutY="43.0" prefHeight="424.0" prefWidth="870.4" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                              <columns>
-                                                                <TableColumn fx:id="reservations_tvCur_CarID" prefWidth="116.80000305175781" text="Car ID" />
-                                                                <TableColumn fx:id="reservations_tvCur_Brand" prefWidth="146.39999389648438" text="Brand" />
-                                                                  <TableColumn fx:id="reservations_tvCur_Model" prefWidth="136.79998779296875" text="Model" />
-                                                                  <TableColumn fx:id="reservations_tvCur_CarRented" prefWidth="147.99993896484375" text="Car Rented Date" />
-                                                                  <TableColumn fx:id="reservations_tvCur_CarReturned" prefWidth="171.199951171875" text="Car Returned Date" />
-                                                                  <TableColumn fx:id="reservations_tvCur_Price" prefWidth="153.599853515625" text="Rental Price" />
-                                                              </columns>
-                                                            </TableView>
-                                                         </children>
-                                                      </AnchorPane>
-                                                </content>
-                                              </Tab>
-                                              <Tab fx:id="reservations_tbPast" text="Past Reservations">
-                                                <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                         <children>
-                                                            <TableView fx:id="reservations_tbPast_tv" prefHeight="424.0" prefWidth="870.4" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                               <columns>
-                                                                  <TableColumn fx:id="reservations_tvPast_CarID" prefWidth="116.80000305175781" text="Car ID" />
-                                                                  <TableColumn fx:id="reservations_tvPast_Brand" prefWidth="146.39999389648438" text="Brand" />
-                                                                  <TableColumn fx:id="reservations_tvPast_Model" prefWidth="136.79998779296875" text="Model" />
-                                                                  <TableColumn fx:id="reservations_tvPast_CarRented" prefWidth="147.99993896484375" text="Car Rented Date" />
-                                                                  <TableColumn fx:id="reservations_tvPast_CarReturn" prefWidth="171.199951171875" text="Car Returned Date" />
-                                                                  <TableColumn fx:id="reservations_tvPast_Price" prefWidth="153.599853515625" text="Rental Price" />
-                                                               </columns>
-                                                            </TableView>
-                                                         </children>
-                                                      </AnchorPane>
-                                                </content>
-                                              </Tab>
-                                            </tabs>
-                                          </TabPane>
                                        </children>
                                     </AnchorPane>
                                  </children>

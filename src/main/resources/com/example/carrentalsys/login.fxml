@@ -16,7 +16,7 @@
    <right>
       <AnchorPane fx:id="rightside" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lbLogin" layoutX="120.0" layoutY="22.0" text="User Login">
+            <Label fx:id="lbLogin" alignment="CENTER" layoutX="120.0" layoutY="72.0" text="User Login">
                <font>
                   <Font name="Segoe UI Bold" size="32.0" />
                </font>
@@ -43,7 +43,7 @@
             </ToggleButton>
             <RadioButton fx:id="adminRadio" layoutX="113.0" layoutY="163.0" mnemonicParsing="false" text="Admin" />
             <RadioButton fx:id="customerRadio" layoutX="222.0" layoutY="163.0" mnemonicParsing="false" text="Customer" />
-            <Label layoutX="176.0" layoutY="126.0" text="I am a:">
+            <Label alignment="CENTER" layoutX="176.0" layoutY="126.0" text="I am a:">
                <font>
                   <Font size="16.0" />
                </font>
