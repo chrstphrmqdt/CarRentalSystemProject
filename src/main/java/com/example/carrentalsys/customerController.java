@@ -11,8 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -27,6 +29,8 @@ import java.util.ResourceBundle;
 public class customerController implements Initializable {
 
 
+    @FXML
+    private ImageView customer_carImage;
     @FXML
     private Label rent_balance;
     @FXML
@@ -287,6 +291,15 @@ public class customerController implements Initializable {
     private Statement statement;
 
     private Image image;
+    
+    public void availableCarSelect() {
+        carData carD = rent_tableview.getSelectionModel().getSelectedItem();
+        //set image
+        getData.path = carD.getImage();
+        String uri = "file:" + carD.getImage();
+        image = new Image(uri, 283, 179, false, true);
+        customer_carImage.setImage(image);
+    }
 
 // navigation buttons functions
 
@@ -295,25 +308,26 @@ public class customerController implements Initializable {
             customer_Home.setVisible(true);
             customer_myAccount.setVisible(false);
             customer_Rentacar.setVisible(false);
-            customer_reservations.setVisible(false);
+
 
         } else if (event.getSource() == btnAccount) {
             customer_myAccount.setVisible(true);
             customer_Home.setVisible(false);
             customer_Rentacar.setVisible(false);
-            customer_reservations.setVisible(false);
+
 
         } else if (event.getSource() == btnCars) {
             customer_Rentacar.setVisible(true);
             customer_Home.setVisible(false);
             customer_myAccount.setVisible(false);
-            customer_reservations.setVisible(false);
+
 
             rentCarShowListData();
             rentCarCarId();
             rentCarBrand();
             rentCarModel();
             rentCarGender();
+
 
         } else if (event.getSource() == btnReservations) {
             customer_reservations.setVisible(true);
@@ -635,7 +649,6 @@ public class customerController implements Initializable {
 
     }
 
-
     private ObservableList<carData> rentCarList;
 
     public void rentCarShowListData() {
@@ -649,6 +662,7 @@ public class customerController implements Initializable {
         rent_tableview.setItems(rentCarList);
 
     }
+
 
     public void logout(ActionEvent event) throws Exception {
         // this will go back to the login page and call the start method from the Main.java
@@ -689,3 +703,5 @@ public class customerController implements Initializable {
         rentDisplayTotal();
     }
 }
+
+

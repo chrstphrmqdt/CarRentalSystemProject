@@ -208,14 +208,14 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <BarChart fx:id="home_lcIncome" layoutX="6.0" layoutY="6.0" prefHeight="298.0" prefWidth="462.0" title="Income Data Chart">
+                                          <LineChart fx:id="home_lcIncome" layoutX="-107.0" layoutY="-89.0" prefHeight="311.2" prefWidth="475.2" title="Income Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
                                               <NumberAxis side="LEFT" />
                                             </yAxis>
-                                          </BarChart>
+                                          </LineChart>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="510.0" layoutY="14.0" prefHeight="311.0" prefWidth="341.0" stylesheets="@dashboardDesign.css">
@@ -224,14 +224,14 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <LineChart fx:id="home_lcCustomer" layoutX="5.0" layoutY="5.0" prefHeight="299.0" prefWidth="330.0" title="Customer Data Chart" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
+                                          <BarChart fx:id="home_lcCustomer" layoutX="-158.0" layoutY="-76.0" prefHeight="324.0" prefWidth="342.4" title="Customer Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
                                               <NumberAxis side="LEFT" />
                                             </yAxis>
-                                          </LineChart>
+                                          </BarChart>
                                        </children>
                                     </AnchorPane>
                                  </children>

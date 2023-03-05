@@ -115,10 +115,10 @@ public class adminController {
     private Label home_totalIncome;
 
     @FXML
-    private LineChart<?, ?> home_lcCustomer;
+    private LineChart<?, ?> home_lcIncome;
 
     @FXML
-    private BarChart<?, ?> home_lcIncome;
+    private BarChart<?, ?> home_lcCustomer;
 
     @FXML
     private Button nav_btnHome;
